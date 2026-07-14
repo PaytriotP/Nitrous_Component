@@ -1,0 +1,221 @@
+.product-detail-page {
+  background-color: var(--carbon-900);
+  flex: 1;
+}
+
+.pd-top-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--gutter);
+}
+
+@media (min-width: 768px) {
+  .pd-top-section {
+    flex-direction: row;
+    gap: var(--space-16);
+  }
+  
+  .pd-gallery, .pd-buy-panel {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.pd-main-image {
+  background-color: var(--white); /* Light tile */
+  border-radius: var(--radius-card);
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+
+.pd-thumbnails {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.pd-thumbnail {
+  width: 80px;
+  height: 80px;
+  background-color: var(--white);
+  border-radius: var(--radius-input);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.pd-thumbnail.active {
+  border-color: var(--nitro-blue);
+}
+
+.pd-buy-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.pd-add-to-cart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 480px) {
+  .pd-add-to-cart {
+    flex-direction: row;
+  }
+}
+
+.quantity-stepper {
+  display: flex;
+  height: 48px;
+  background-color: var(--carbon-800);
+  border: 1px solid var(--carbon-700);
+  border-radius: var(--radius-button);
+  overflow: hidden;
+}
+
+.stepper-btn {
+  background: transparent;
+  border: none;
+  color: var(--white);
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  padding: 0;
+}
+
+.stepper-btn:hover {
+  background-color: var(--carbon-700);
+}
+
+.stepper-input {
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--carbon-700);
+  border-right: 1px solid var(--carbon-700);
+  color: var(--white);
+  width: 60px;
+  text-align: center;
+  outline: none;
+}
+
+.stepper-input::-webkit-outer-spin-button,
+.stepper-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pd-cart-btn {
+  flex: 1;
+}
+
+.pd-delivery-line {
+  color: var(--nitro-blue);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: var(--space-6);
+}
+
+.pd-payment-icons {
+  display: flex;
+  gap: var(--space-3);
+  color: var(--steel-400);
+}
+
+.pd-payment-icons svg {
+  opacity: 0.7;
+}
+
+/* Tabs */
+.pd-tabs-section {
+  background-color: var(--carbon-900);
+  padding: var(--space-8) 0;
+  border-top: 1px solid var(--carbon-800);
+}
+
+.pd-tabs-header {
+  display: flex;
+  gap: var(--space-6);
+  border-bottom: 1px solid var(--carbon-700);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.pd-tabs-header::-webkit-scrollbar {
+  display: none;
+}
+
+.pd-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--steel-400);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0 0 var(--space-3) 0;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: auto;
+}
+
+.pd-tab-btn:hover {
+  color: var(--white);
+}
+
+.pd-tab-btn.active {
+  color: var(--nitro-blue);
+  border-bottom-color: var(--nitro-blue);
+}
+
+.pd-tab-content {
+  padding: var(--space-8) 0;
+  max-width: 800px;
+}
+
+.prose {
+  color: var(--steel-400);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.prose p {
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+}
+
+.prose strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.datasheet-link {
+  color: var(--nitro-blue);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: filter 0.2s ease;
+}
+
+.datasheet-link:hover {
+  filter: brightness(1.2);
+}
+
+.pd-related-section {
+  padding: var(--space-16) 0 var(--space-24) 0;
+  background-color: var(--carbon-900);
+}

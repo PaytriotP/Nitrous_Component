@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+<rect width="500" height="500" rx="24" fill="#F2F5F9"/>
+<path d="M110 370 L300 180" stroke="#131824" stroke-width="26" stroke-linecap="round"/><path d="M300 180 l40 -40 l60 24 l-24 60 l-40 40" fill="#8A94A8"/><circle cx="128" cy="382" r="34" fill="#2FB7FF"/>
+<rect x="0" y="440" width="500" height="60" fill="#131824"/>
+<text x="24" y="478" font-family="monospace" font-size="24" fill="#F2F5F9">TOOL-WICK-2MM</text>
+<text x="476" y="478" font-family="monospace" font-size="18" fill="#2FB7FF" text-anchor="end">NITROUS</text>
+</svg>

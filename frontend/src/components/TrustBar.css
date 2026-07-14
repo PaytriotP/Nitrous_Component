@@ -1,0 +1,42 @@
+/* ---------- Trust bar ---------- */
+.trust {
+  padding: 0 0 96px;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.trust-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.trust-item svg {
+  flex-shrink: 0;
+  color: var(--nitro-blue);
+}
+.trust-item h3 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  font-family: var(--font-display);
+}
+.trust-item p {
+  font-size: 14px;
+  color: var(--steel-400);
+  margin: 0;
+}
+@media (max-width: 1024px) {
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px;
+  }
+}
+@media (max-width: 768px) {
+  .trust {
+    padding-bottom: 48px;
+  }
+}

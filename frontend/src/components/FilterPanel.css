@@ -1,0 +1,240 @@
+.filter-panel {
+  width: 100%;
+  background-color: var(--carbon-900);
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) 0;
+  margin-bottom: var(--space-4);
+}
+
+.filter-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.filter-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  display: none; /* Hidden on desktop */
+}
+
+.filter-group {
+  margin-bottom: var(--space-6);
+}
+
+.filter-group-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 var(--space-4) 0;
+}
+
+.filter-divider {
+  border: none;
+  border-top: 1px solid var(--carbon-700);
+  margin: var(--space-6) 0;
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: var(--space-3);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--white);
+  position: relative;
+  padding-left: 28px;
+  user-select: none;
+}
+
+.filter-checkbox:last-child {
+  margin-bottom: 0;
+}
+
+.filter-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: var(--carbon-800);
+  border: 1px solid var(--carbon-700);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.filter-checkbox:hover input ~ .checkbox-custom {
+  border-color: var(--nitro-blue);
+}
+
+.filter-checkbox input:checked ~ .checkbox-custom {
+  background-color: var(--nitro-blue);
+  border-color: var(--nitro-blue);
+}
+
+.checkbox-custom:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.filter-checkbox input:checked ~ .checkbox-custom:after {
+  display: block;
+}
+
+.filter-checkbox .checkbox-custom:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--carbon-900);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.filter-count {
+  color: var(--steel-400);
+  margin-left: auto;
+  font-family: var(--font-data);
+}
+
+/* Price Inputs */
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.price-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.price-currency {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--steel-400);
+  font-family: var(--font-data);
+  font-size: 14px;
+}
+
+.price-input {
+  width: 100%;
+  background-color: var(--carbon-800);
+  border: 1px solid var(--carbon-700);
+  color: var(--white);
+  font-family: var(--font-data);
+  font-size: 14px;
+  padding: var(--space-2) var(--space-2) var(--space-2) 28px;
+  border-radius: var(--radius-input);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.price-input:focus {
+  border-color: var(--nitro-blue);
+}
+
+.price-separator {
+  color: var(--steel-400);
+}
+
+.filter-actions {
+  display: none;
+}
+
+/* Mobile Slide-over Drawer */
+@media (max-width: 1023px) {
+  .filter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(11, 14, 20, 0.8);
+    z-index: 1000;
+  }
+
+  .filter-panel {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    bottom: 0;
+    width: 85%;
+    max-width: 360px;
+    background-color: var(--carbon-900);
+    z-index: 1001;
+    padding: var(--space-6);
+    transition: left 0.3s ease;
+    border-right: 1px solid var(--carbon-700);
+  }
+
+  .filter-panel.open {
+    left: 0;
+  }
+
+  .filter-close-btn {
+    display: flex;
+  }
+
+  .filter-content {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .filter-actions {
+    display: block;
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--carbon-700);
+  }
+
+  .filter-apply-btn {
+    width: 100%;
+  }
+}
+.filter-scrollable-list {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-right: -8px;
+}
+.filter-scrollable-list::-webkit-scrollbar {
+  width: 4px;
+}
+.filter-scrollable-list::-webkit-scrollbar-track {
+  background: var(--navy-800);
+  border-radius: 4px;
+}
+.filter-scrollable-list::-webkit-scrollbar-thumb {
+  background: var(--steel-600);
+  border-radius: 4px;
+}

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Store Checkout — Secure Paytriot Portal</title>
+    
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Link the Paytriot popup styling -->
+    <link rel="stylesheet" href="paytriot-popup.css">
+
+    <style>
+        :root {
+            --bg-color: #0d0f14;
+            --surface-color: #131722;
+            --accent-indigo: #4f46e5;
+            --accent-orange: #f28714;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #1f2937;
+            --input-bg: #1e293b;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkout-wrapper {
+            width: 100%;
+            max-width: 1050px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        /* Grid Layout */
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 868px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card panels */
+        .panel {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 40%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .number-badge {
+            background: var(--accent-indigo);
+            color: #ffffff;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* Form Controls */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        input, select {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent-indigo);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        /* Payment selection */
+        .payment-option {
+            border: 2px solid var(--accent-indigo);
+            background: rgba(79, 70, 229, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .payment-option-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .payment-radio {
+            accent-color: var(--accent-indigo);
+            width: 18px;
+            height: 18px;
+        }
+
+        .payment-title {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .payment-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .payment-icon {
+            height: 20px;
+            opacity: 0.85;
+        }
+
+        /* Order Summary Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 12px;
+        }
+
+        .item-details h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .item-details p {
+            margin: 2px 0 0 0;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .item-price {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .summary-totals {
+            margin-top: 20px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .total-row.grand-total {
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Selectable Amount for testing */
+        .amount-selector-wrap {
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        /* Checkout buttons */
+        .btn-pay {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, #3b82f6 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-pay:hover {
+            opacity: 0.95;
+        }
+
+        .btn-pay:active {
+            transform: scale(0.99);
+        }
+
+        .secure-lock-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        /* Success screen modal */
+        .success-banner {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: none;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .success-banner svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .success-banner h4 {
+            margin: 0 0 4px 0;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .success-banner p {
+            margin: 0;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-wrapper">
+        
+        <!-- Successful Payment Alert -->
+        <div id="success-alert" class="success-banner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <div>
+                <h4>Payment Successful!</h4>
+                <p>Your transaction has been securely processed. Order reference: <span id="success-ref">N/A</span>. Thank you for your purchase.</p>
+            </div>
+        </div>
+
+        <!-- Cancelled/Failed Payment Alert -->
+        <div id="cancel-alert" class="cancel-banner" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; border-radius: 12px; padding: 16px; margin-bottom: 24px; display: none; align-items: flex-start; gap: 12px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="15" y1="9" x2="9" y2="15"></line>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
+            </svg>
+            <div>
+                <h4>Payment Cancelled or Failed</h4>
+                <p id="cancel-msg">Your transaction was cancelled or could not be completed. Please verify your details and try again.</p>
+            </div>
+        </div>
+
+        <div class="checkout-grid">
+            
+            <!-- Left Side: Shipping & Payment Method -->
+            <div class="panel">
+                <h1>Secure Checkout</h1>
+                
+                <form id="checkout-form" onsubmit="triggerPayment(event)">
+                    <h2><span class="number-badge">1</span> Billing Details</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" value="Alex" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" value="Morgan" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" value="alex.morgan@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Street Address</label>
+                        <input type="text" id="address" value="742 Evergreen Terrace" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" value="London" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postcode">Postal Code</label>
+                            <input type="text" id="postcode" value="EC1A 1BB" required>
+                        </div>
+                    </div>
+
+                    <h2 style="margin-top: 30px;"><span class="number-badge">2</span> Payment Method</h2>
+                    
+                    <div class="payment-option">
+                        <div class="payment-option-left">
+                            <input type="radio" class="payment-radio" checked readonly>
+                            <div>
+                                <span class="payment-title" style="display: flex; align-items: center; gap: 8px;">
+                                    Credit or Debit Card 
+                                    <img src="paytriotlogo.svg" alt="Paytriot Logo" style="height: 20px; width: auto; vertical-align: middle;" onerror="this.onerror=null; this.src='Paytriotlogo.png';" />
+                                </span>
+                                <div class="payment-desc">Processed securely via Paytriot Gateways.</div>
+                            </div>
+                        </div>
+                        <div class="payment-icons">
+                            <!-- SVG Card Logos -->
+                            <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><rect width="24" height="16" rx="2" fill="#1434CB"/><circle cx="8" cy="8" r="4" fill="#FF5F00"/><circle cx="16" cy="8" r="4" fill="#F79E1B"/></svg>
+                            <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><rect width="24" height="16" rx="2" fill="#1A1F71"/><path d="M4 11l1.5-6H7l-1.5 6H4zm6.5-6c-.3 0-.6.1-.8.4L7.5 11h1.5l.3-.8h1.8l.2.8h1.3L12 5h-1.5zm-.8 4.2l.5-1.5.3 1.5h-.8zm5.5-4.2H14l-1.2 4.2-.5-3.5c-.1-.4-.4-.7-.8-.7H9l.1.4 1.4.6.8 2.2-1.5-3.2" fill="white"/></svg>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-pay">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-top: -1px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        Pay Securely with Paytriot
+                    </button>
+                    
+                    <div class="secure-lock-info">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.7;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        Your card data is encrypted and processed fully on PCI-DSS compliant servers
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Side: Order Summary -->
+            <div class="sidebar">
+                <div class="panel">
+                    <h2>Order Summary</h2>
+                    
+                    <div class="order-item">
+                        <div class="item-details">
+                            <h4>Standard Plan Subscription</h4>
+                            <p>Billed Monthly</p>
+                        </div>
+                        <div class="item-price" id="item-price-val">£10.01</div>
+                    </div>
+
+                    <!-- Demo Interactive Amount for testing -->
+                    <div class="amount-selector-wrap">
+                        <label for="demo-amount">Test Transaction Amount (£)</label>
+                        <select id="demo-amount" style="width: 100%; margin-top: 6px;" onchange="updateAmount(this.value)">
+                            <option value="10.01">£10.01 (Default)</option>
+                            <option value="1.00">£1.00</option>
+                            <option value="25.50">£25.50</option>
+                            <option value="150.00">£150.00</option>
+                        </select>
+                    </div>
+
+                    <div class="summary-totals">
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal-val">£10.01</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping</span>
+                            <span>FREE</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Total</span>
+                            <span id="total-val">£10.01</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Include the Paytriot popup library -->
+    <script src="paytriot-popup.js"></script>
+
+    <script>
+        // Update display amounts when selector changes
+        function updateAmount(val) {
+            const formatted = `£${parseFloat(val).toFixed(2)}`;
+            document.getElementById('item-price-val').innerText = formatted;
+            document.getElementById('subtotal-val').innerText = formatted;
+            document.getElementById('total-val').innerText = formatted;
+        }
+
+        // Check if URL returned with status parameters (redirect breakout return)
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('status') === 'success') {
+                // Hide other banners
+                document.getElementById('cancel-alert').style.display = 'none';
+                
+                const banner = document.getElementById('success-alert');
+                banner.style.display = 'flex';
+                
+                // Retrieve or generate reference
+                const orderRef = params.get('orderRef') || 'PAY-' + Math.floor(Math.random() * 1000000);
+                document.getElementById('success-ref').innerText = orderRef;
+                
+                // Smooth scroll to success banner
+                banner.scrollIntoView({ behavior: 'smooth' });
+            } else if (params.get('status') === 'cancel') {
+                // Hide other banners
+                document.getElementById('success-alert').style.display = 'none';
+                
+                const banner = document.getElementById('cancel-alert');
+                banner.style.display = 'flex';
+                
+                const msg = params.get('message') || 'The transaction was cancelled or declined.';
+                document.getElementById('cancel-msg').innerText = msg;
+                
+                // Smooth scroll to cancel banner
+                banner.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Trigger payment flow
+        async function triggerPayment(e) {
+            e.preventDefault();
+
+            // Synchronously pre-open blank popup window to bypass browser popup blockers
+            PaytriotCheckout.initPopup();
+
+            const payButton = document.querySelector('.btn-pay');
+            const originalBtnText = payButton.innerHTML;
+            payButton.disabled = true;
+            payButton.innerHTML = 'Connecting...';
+
+            const amountVal = document.getElementById('demo-amount').value;
+            const customerName = document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value;
+            const customerEmail = document.getElementById('email').value;
+            const customerAddress = document.getElementById('address').value;
+            const customerCity = document.getElementById('city').value;
+            const customerPostCode = document.getElementById('postcode').value;
+            const orderRef = 'MOCK_ORDER_' + Math.floor(Math.random() * 100000);
+
+            const currentUrlWithoutQuery = window.location.href.split('?')[0];
+            const isNodeEnv = window.location.port === '3000';
+            
+            let redirectURL;
+            if (isNodeEnv) {
+                redirectURL = `${window.location.origin}/redirect?checkoutURL=${encodeURIComponent(currentUrlWithoutQuery)}`;
+            } else {
+                const baseDir = currentUrlWithoutQuery.substring(0, currentUrlWithoutQuery.lastIndexOf('/'));
+                redirectURL = `${baseDir}/backend-helpers/generator.php?action=redirect&checkoutURL=${encodeURIComponent(currentUrlWithoutQuery)}`;
+            }
+
+            try {
+                // Fetch signed payload from our backend helper endpoint
+                // In this mock, we attempt to connect to generator.php (if hosted locally with PHP) 
+                // or fallback to localhost:3000 (if Node generator is running).
+                let response;
+                let payload = {
+                    amount: amountVal,
+                    currency: 'GBP',
+                    orderRef: orderRef,
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerAddress: customerAddress,
+                    customerCity: customerCity,
+                    customerPostCode: customerPostCode,
+                    customerCountryCode: 'GB',
+                    customerPhone: '07700900077',
+                    redirectURL: redirectURL
+                };
+
+                // Select the correct endpoint based on current hosting port
+                const isNodeEnv = window.location.port === '3000';
+                const primaryEndpoint = isNodeEnv ? '/generate' : 'backend-helpers/generator.php?action=generate';
+
+                try {
+                    response = await fetch(primaryEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    // Fallback to local Node server if primary failed in a non-Node environment
+                    if (!response.ok && !isNodeEnv) {
+                        throw new Error('Primary endpoint returned status ' + response.status);
+                    }
+                } catch (err) {
+                    console.log('Primary endpoint failed, falling back to local Node server on port 3000');
+                    response = await fetch('http://localhost:3000/generate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                }
+
+                if (!response.ok) {
+                    throw new Error('Failed to retrieve signature from payment generator backend.');
+                }
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Open the secure Paytriot popup modal with signed fields
+                    PaytriotCheckout.open({
+                        fields: data.fields,
+                        gatewayUrl: data.gatewayUrl, // https://gateway.paytriot.co.uk/hosted/modal/
+                        onClose: () => {
+                            // Hide success banner
+                            document.getElementById('success-alert').style.display = 'none';
+                            
+                            // Show cancel banner with a clear closed notification
+                            const banner = document.getElementById('cancel-alert');
+                            banner.style.display = 'flex';
+                            document.getElementById('cancel-msg').innerText = 'The payment overlay was closed. You can try selecting payment again.';
+                            
+                            // Smooth scroll
+                            banner.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                } else {
+                    PaytriotCheckout.close(true);
+                    alert('Signature Generation Error: ' + (data.error || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error(err);
+                
+                // Close blank popup on failure/error
+                PaytriotCheckout.close(true);
+
+                // Fallback demo mock if no backend is running
+                const confirmMock = confirm(
+                    `Backend generator API not running (Requires PHP server or running Node.js "generator.js" helper locally).\n\n` + 
+                    `Would you like to simulate a successful payment redirection response for testing purposes?`
+                );
+                
+                if (confirmMock) {
+                    window.location.href = window.location.href.split('?')[0] + `?status=success&orderRef=${orderRef}`;
+                }
+            } finally {
+                payButton.disabled = false;
+                payButton.innerHTML = originalBtnText;
+            }
+        }
+    </script>
+</body>
+</html>

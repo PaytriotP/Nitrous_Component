@@ -1,0 +1,77 @@
+.policy-page {
+  background-color: var(--carbon-900);
+  flex: 1;
+  padding: var(--space-12) var(--gutter);
+}
+
+.policy-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.policy-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h1-size);
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-8);
+}
+
+.policy-content {
+  color: var(--steel-400);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.policy-content h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2-size);
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: var(--space-12) 0 var(--space-6) 0;
+  position: relative;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--carbon-700);
+}
+
+/* Pressure rule effect on H2s */
+.policy-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 60px;
+  height: 1px;
+  background-color: var(--nitro-blue);
+  box-shadow: 0 0 8px var(--nitro-blue);
+}
+
+.policy-content p {
+  margin-bottom: var(--space-4);
+}
+
+.policy-content ul, .policy-content ol {
+  margin-bottom: var(--space-6);
+  padding-left: var(--space-6);
+}
+
+.policy-content li {
+  margin-bottom: var(--space-2);
+}
+
+.policy-content strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.policy-content a {
+  color: var(--nitro-blue);
+  text-decoration: none;
+}
+
+.policy-content a:hover {
+  text-decoration: underline;
+}

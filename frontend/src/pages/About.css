@@ -1,0 +1,79 @@
+.about-page {
+  background-color: var(--carbon-900);
+  flex: 1;
+}
+
+.about-hero {
+  padding: var(--space-16) 0;
+  background-color: var(--carbon-800);
+  border-bottom: 1px solid var(--carbon-700);
+}
+
+.about-hero-container {
+  max-width: 800px;
+}
+
+.about-hero h1 {
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.about-content {
+  padding: var(--space-16) var(--gutter);
+  max-width: 800px;
+}
+
+.about-story {
+  margin-bottom: var(--space-16);
+}
+
+.about-story h2 {
+  margin-bottom: var(--space-6);
+}
+
+.about-quality {
+  margin-bottom: var(--space-16);
+}
+
+.about-quality h2 {
+  margin-bottom: var(--space-8);
+}
+
+.quality-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .quality-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.quality-card {
+  background-color: var(--carbon-800);
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--carbon-700);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: fit-content;
+}
+
+.quality-card h3 {
+  color: var(--white);
+  margin: 0;
+}
+
+.quality-card p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.about-cta {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-8) 0;
+}

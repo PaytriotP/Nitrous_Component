@@ -1,0 +1,123 @@
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding: 112px 0 96px;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 46px, rgba(47,183,255,.03) 46px 48px),
+    radial-gradient(ellipse 800px 500px at 75% 40%, rgba(14,111,184,.14), transparent 65%),
+    var(--carbon-900);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 64px;
+  align-items: center;
+}
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--nitro-blue);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+  margin-bottom: 24px;
+}
+.hero h1 .volt {
+  color: var(--purge-volt);
+}
+.hero p {
+  color: var(--steel-400);
+  font-size: 18px;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.hero-meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 40px;
+  font-family: var(--font-data);
+  font-size: 13px;
+  color: var(--steel-300);
+}
+.hero-meta strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+/* Gauge */
+.gauge-wrap {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.gauge-wrap::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding-bottom: 100%; /* square aspect ratio */
+  background: radial-gradient(circle, rgba(216,246,51,0.08) 0%, transparent 65%);
+  z-index: -1;
+  pointer-events: none;
+}
+.gauge {
+  width: 100%;
+  max-width: 360px;
+}
+.gauge-needle {
+  transform-origin: 150px 150px;
+  transform: rotate(-118deg);
+}
+@keyframes sweep {
+  0% { transform: rotate(-118deg) }
+  70% { transform: rotate(96deg) }
+  85% { transform: rotate(78deg) }
+  100% { transform: rotate(84deg) }
+}
+.gauge-loaded .gauge-needle {
+  animation: sweep 1.6s cubic-bezier(.3,.9,.35,1) forwards .3s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gauge-needle {
+    transform: rotate(84deg) !important;
+    animation: none !important;
+  }
+}
+@media (max-width: 1024px) {
+  .hero h1 {
+    font-size: 48px;
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    padding: 64px 0 48px;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero h1 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+}

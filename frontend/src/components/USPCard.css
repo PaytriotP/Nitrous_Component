@@ -1,0 +1,34 @@
+/* ---------- USP ---------- */
+.usp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.usp {
+  background: var(--carbon-800);
+  border: 1px solid var(--carbon-700);
+  border-radius: var(--radius-card, 12px);
+  padding: 32px;
+}
+.usp svg {
+  color: var(--nitro-blue);
+  margin-bottom: 20px;
+}
+.usp h3 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+}
+.usp p {
+  color: var(--steel-400);
+  font-size: 15px;
+  margin: 0;
+}
+@media (max-width: 1024px) {
+  .usp-grid {
+    grid-template-columns: 1fr;
+  }
+}
