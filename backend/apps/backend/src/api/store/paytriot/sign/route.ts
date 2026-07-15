@@ -1,4 +1,4 @@
-import { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
 import crypto from 'crypto';
 
 class PaytriotSignatureHelper {
