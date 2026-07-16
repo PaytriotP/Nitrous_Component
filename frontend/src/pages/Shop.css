@@ -11,7 +11,7 @@
 }
 
 .shop-sidebar {
-  display: none;
+  /* On mobile, FilterPanel uses position:fixed overlay */
 }
 
 @media (min-width: 1024px) {
@@ -52,11 +52,38 @@
 .shop-controls {
   display: flex;
   gap: var(--space-4);
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .mobile-filter-toggle {
   display: flex;
   align-items: center;
+}
+
+.view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--carbon-800);
+  border: 1px solid var(--carbon-700);
+  border-radius: var(--radius-input);
+  padding: 4px;
+}
+.view-toggle .icon-btn {
+  padding: 8px;
+  border-radius: 4px;
+  color: var(--steel-400);
+}
+.view-toggle .icon-btn.active {
+  background: var(--carbon-700);
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .view-toggle {
+    display: flex; /* Ensure it shows on mobile */
+  }
 }
 
 @media (min-width: 1024px) {
@@ -106,9 +133,15 @@
   transition: border-color 0.2s ease;
 }
 
+.sort-select option {
+  background-color: var(--carbon-900);
+  color: var(--white);
+}
+
 @media (max-width: 768px) {
   .sort-select {
     height: 44px;
+    min-width: 140px;
   }
 }
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="width:{{ pxSize }}px; height:{{ pxSize }}px; display:inline-flex;">{{ markSvg }}</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:80,&quot;height&quot;:80},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:64,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:16,&quot;max&quot;:240},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;]}}">
+class Component extends DCLogic {
+  renderVals() {
+    const size = Number(this.props.size) || 64;
+    const mode = this.props.mode || 'dark';
+    const boltColor = mode === 'light' ? '#0B7FC4' : '#19A8FF';
+    const hexStroke = mode === 'light' ? '#101215' : '#F4F6F8';
+    const hex = React.createElement('polygon', {
+      points: '50,3 92,26 92,74 50,97 8,74 8,26',
+      fill: 'none', stroke: hexStroke, strokeWidth: 5, strokeLinejoin: 'round'
+    });
+    const bolt = React.createElement('polygon', {
+      points: '58,20 30,56 48,56 42,82 72,44 52,44',
+      fill: boltColor
+    });
+    const svg = React.createElement('svg', { viewBox: '0 0 100 100', width: size, height: size, style: { display: 'block' } }, hex, bolt);
+    return { pxSize: size, markSvg: svg };
+  }
+}
+
+</script>
+</body>
+</html>

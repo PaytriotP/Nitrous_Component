@@ -1,6 +1,6 @@
 .announce {
   background: linear-gradient(90deg, var(--nitro-deep), var(--nitro-blue));
-  height: 36px;
+  min-height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,4 +10,6 @@
   color: var(--carbon-900);
   font-weight: 500;
   text-transform: uppercase;
+  padding: 4px 16px;
+  text-align: center;
 }

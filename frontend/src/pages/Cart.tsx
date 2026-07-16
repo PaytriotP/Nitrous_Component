@@ -113,7 +113,7 @@ function CartItemRow({ item, updateQuantity, removeFromCart }: any) {
       <div className="ci-product">
         <Link to={`/product/${item.product.part_number.toLowerCase()}`} className="ci-image">
           {item.product.image_file ? (
-            <img src={`/${item.product.image_file}`} alt={item.product.name} />
+            <img src={item.product.image_file.startsWith('http') ? item.product.image_file : `${item.product.image_file}`} alt={item.product.name} />
           ) : (
             <div className="placeholder-chip"></div>
           )}

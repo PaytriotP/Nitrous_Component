@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
+<script>window.OM_SCENES = '[{"name":"Reveal","dur":3.2}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"loop"}';</script>
+<style>body { margin: 0; background: #0b0c0e; }</style>
+</helmet>
+<x-import component-from-global-scope="SceneStage" from="./animations-v2.jsx ./nitrous-reveal-scene.jsx" width="960" height="540" scenes="{{ omScenes }}" playback="{{ omPlayback }}" bg="#0b0c0e" children="{{ sceneMap }}" hint-size="960,540"></x-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { ready: !!window.Reveal };
+  componentDidMount() {
+    if (this.state.ready) return;
+    this._poll = setInterval(() => {
+      if (window.Reveal) {
+        clearInterval(this._poll);
+        this.setState({ ready: true });
+      }
+    }, 50);
+  }
+  componentWillUnmount() {
+    clearInterval(this._poll);
+  }
+  renderVals() {
+    return {
+      omScenes: window.OM_SCENES,
+      omPlayback: window.OM_PLAYBACK,
+      sceneMap: this.state.ready ? { Reveal: window.Reveal } : {}
+    };
+  }
+}
+
+</script>
+</body>
+</html>

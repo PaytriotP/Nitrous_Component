@@ -83,17 +83,22 @@
 
 @media (max-width: 768px) {
   .search-form {
-    width: 200px;
+    position: fixed;
+    top: 12px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    z-index: 100;
   }
   
   @keyframes slideLeft {
     from {
-      width: 40px;
       opacity: 0;
+      transform: translateY(-10px);
     }
     to {
-      width: 200px;
       opacity: 1;
+      transform: translateY(0);
     }
   }
 }

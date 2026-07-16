@@ -2,7 +2,7 @@ import { MedusaContainer } from "@medusajs/framework";
 import { createProductsWorkflow, deleteProductsWorkflow } from "@medusajs/medusa/core-flows";
 import { ProductStatus, ContainerRegistrationKeys } from "@medusajs/framework/utils";
 import fs from "fs";
-import path from "path";
+import { parse } from "csv-parse/sync";
 
 export default async function importComponents({
   container,
@@ -32,13 +32,15 @@ export default async function importComponents({
     logger.info(`Deleted ${existingProducts.length} existing products.`);
   }
 
-  logger.info("Reading products.json...");
-  // Using process.cwd() which will be backend/apps/backend
-  const jsonPath = path.resolve(process.cwd(), "../../../src/data/products.json");
-  const productsRaw = fs.readFileSync(jsonPath, "utf-8");
-  const productsData = JSON.parse(productsRaw);
+  logger.info("Reading live CSV...");
+  const csvPath = "d:/Paytriot/Project/Nitrous/frontend/nitrous-catalogue-50/nitrous-component-products-50-live.csv";
+  const productsRaw = fs.readFileSync(csvPath, "utf-8");
+  const records = parse(productsRaw, {
+    columns: true,
+    skip_empty_lines: true
+  });
 
-  const productsToCreate = productsData.map((p: any) => ({
+  const productsToCreate = records.map((p: any) => ({
     title: p.name,
     handle: p.part_number.toLowerCase().replace(/[^a-z0-9_-]/g, "-"),
     description: `Category: ${p.category} | Manufacturer: ${p.manufacturer}`,
@@ -58,6 +60,11 @@ export default async function importComponents({
       image_file: p.image_file,
       datasheet_url: p.datasheet_url,
     },
+    images: [
+      {
+        url: p.image_file,
+      }
+    ],
     variants: [
       {
         title: p.part_number,
@@ -75,7 +82,6 @@ export default async function importComponents({
 
   logger.info(`Starting import of ${productsToCreate.length} products...`);
   
-  // We can process in batches to avoid overwhelming the database
   const batchSize = 10;
   for (let i = 0; i < productsToCreate.length; i += batchSize) {
     const batch = productsToCreate.slice(i, i + batchSize);
@@ -85,5 +91,5 @@ export default async function importComponents({
     logger.info(`Imported ${i + batch.length} / ${productsToCreate.length}`);
   }
 
-  logger.info("Import complete!");
+  logger.info("Import complete! Products are now live in the database.");
 }

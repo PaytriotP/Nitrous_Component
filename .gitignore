@@ -8,3 +8,6 @@ build
 .medusa
 uploads
 scripts_archive
+
+.vercel
+.env*

@@ -30,7 +30,8 @@ export default function Home() {
   const getCategoryImageUrl = (title: string, fallback: string) => {
     if (loading || error || products.length === 0) return fallback;
     const productWithImage = products.find(p => (p.category || '').toLowerCase() === title.toLowerCase() && p.image_file);
-    return productWithImage ? `/${productWithImage.image_file}` : fallback;
+    if (!productWithImage) return fallback;
+    return productWithImage.image_file.startsWith('http') ? productWithImage.image_file : `/${productWithImage.image_file}`;
   };
 
   return (

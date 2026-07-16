@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #0b0c0e; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</helmet>
+
+<div style="background:#0b0c0e; padding:64px 48px 96px; display:flex; flex-direction:column; gap:56px; align-items:center; font-family:'Inter',sans-serif;">
+
+  <div style="text-align:center;">
+    <div class="mono" style="color:#7C8894; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">Brand · Logo System</div>
+    <div style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:28px; color:#F4F6F8;">Nitrous Components</div>
+  </div>
+
+  <!-- Primary lockup, dark -->
+  <div style="width:100%; max-width:1040px;">
+    <div class="mono" style="color:#7C8894; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;">1 — Primary Horizontal Lockup</div>
+    <div style="background:#101215; border-radius:4px; padding:80px 64px; display:flex; align-items:center; justify-content:center;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <dc-import name="NitrousMark" size="34" mode="dark" hint-size="34,34"></dc-import>
+        <div style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:32px; letter-spacing:0.02em; line-height:1;">
+          <span style="color:#F4F6F8;">NITROUS</span> <span style="color:#19A8FF;">COMPONENTS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Icon / monogram -->
+  <div style="width:100%; max-width:1040px;">
+    <div class="mono" style="color:#7C8894; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;">2 — Standalone Icon</div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+      <div style="background:#101215; border-radius:4px; padding:36px; display:flex; align-items:center; justify-content:center;">
+        <dc-import name="NitrousMark" size="90" mode="dark" hint-size="90,90"></dc-import>
+      </div>
+      <div style="background:#101215; border-radius:4px; padding:36px; display:flex; align-items:center; justify-content:center;">
+        <dc-import name="NitrousMark" size="56" mode="dark" hint-size="56,56"></dc-import>
+      </div>
+      <div style="background:#101215; border-radius:4px; padding:36px; display:flex; align-items:center; justify-content:center;">
+        <dc-import name="NitrousMark" size="28" mode="dark" hint-size="28,28"></dc-import>
+      </div>
+      <div style="background:#101215; border-radius:4px; padding:36px; display:flex; align-items:center; justify-content:center;">
+        <div style="background:#F4F6F8; width:24px; height:24px; border-radius:5px; display:flex; align-items:center; justify-content:center;">
+          <dc-import name="NitrousMark" size="16" mode="light" hint-size="16,16"></dc-import>
+        </div>
+      </div>
+    </div>
+    <div class="mono" style="color:#7C8894; font-size:11px; margin-top:10px;">90px · 56px · 28px · 24px favicon tile</div>
+  </div>
+
+  <!-- Dark vs light variants -->
+  <div style="width:100%; max-width:1040px; display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+    <div>
+      <div class="mono" style="color:#7C8894; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;">3a — Dark Background</div>
+      <div style="background:#101215; border-radius:4px; padding:56px; display:flex; align-items:center; justify-content:center; gap:12px;">
+        <dc-import name="NitrousMark" size="26" mode="dark" hint-size="26,26"></dc-import>
+        <div style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:24px; letter-spacing:0.02em; line-height:1;">
+          <span style="color:#F4F6F8;">NITROUS</span> <span style="color:#19A8FF;">COMPONENTS</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="mono" style="color:#7C8894; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;">3b — Light Background</div>
+      <div style="background:#F4F6F8; border-radius:4px; padding:56px; display:flex; align-items:center; justify-content:center; gap:12px;">
+        <dc-import name="NitrousMark" size="26" mode="light" hint-size="26,26"></dc-import>
+        <div style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:24px; letter-spacing:0.02em; line-height:1;">
+          <span style="color:#101215;">NITROUS</span> <span style="color:#0B7FC4;">COMPONENTS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stock state chips -->
+  <div style="width:100%; max-width:1040px;">
+    <div class="mono" style="color:#7C8894; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;">4 — Applied: Stock-State Tags</div>
+    <div style="background:#101215; border-radius:4px; padding:40px 64px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+      <div class="mono" style="border:1.5px solid #19A8FF; color:#19A8FF; font-size:12px; letter-spacing:0.08em; padding:6px 14px; border-radius:2px;">PRESSURISED</div>
+      <div class="mono" style="border:1.5px solid #D8FF3D; color:#D8FF3D; font-size:12px; letter-spacing:0.08em; padding:6px 14px; border-radius:2px;">VENTING</div>
+      <div class="mono" style="border:1.5px solid #7C8894; color:#7C8894; font-size:12px; letter-spacing:0.08em; padding:6px 14px; border-radius:2px;">DEPLETED</div>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+</body>
+</html>

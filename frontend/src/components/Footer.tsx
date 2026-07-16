@@ -8,8 +8,9 @@ export default function Footer() {
         <div className="foot-grid">
           <div className="foot-col foot-brand">
             <Link to="/" className="logo">
-              <svg className="logo-mark" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                <path d="M4 24 L14 3 L17 3 L12 14 L20 14 L10 25 L13 16 L6 16 Z" fill="#2FB7FF"/>
+              <svg className="logo-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                <polygon points="50,3 92,26 92,74 50,97 8,74 8,26" fill="none" stroke="currentColor" strokeWidth="5" strokeLinejoin="round" />
+                <polygon points="58,20 30,56 48,56 42,82 72,44 52,44" fill="var(--nitro-blue)" />
               </svg>
               Nitrous<span className="n2o">Component</span>
             </Link>

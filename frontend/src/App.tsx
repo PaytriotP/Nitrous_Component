@@ -17,7 +17,7 @@ import Cookies from './pages/policies/Cookies';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import FAQs from './pages/FAQs';
-import Account from './pages/Account';
+
 import { CartProvider } from './contexts/CartContext';
 import './App.css';
 
@@ -48,7 +48,7 @@ function AppContent() {
         <Route path="/faq" element={<FAQs />} />
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/tracking" element={<Tracking />} />
-        <Route path="/account" element={<Account />} />
+
       </Routes>
 
       {!isCheckout && <Footer />}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { Filter, ChevronDown } from 'lucide-react';
+import { Filter, ChevronDown, Grid, List } from 'lucide-react';
 import FilterPanel from '../components/FilterPanel';
 import ProductCard from '../components/ProductCard';
 import { useProducts } from '../hooks/useProducts';
@@ -8,6 +8,7 @@ import './Shop.css';
 
 export default function Shop() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isListView, setIsListView] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 12;
   const { categorySlug } = useParams();
@@ -161,6 +162,23 @@ export default function Shop() {
                   <ChevronDown size={16} className="sort-icon" />
                 </div>
               </div>
+
+              <div className="view-toggle">
+                <button 
+                  className={`icon-btn ${!isListView ? 'active' : ''}`} 
+                  onClick={() => setIsListView(false)}
+                  aria-label="Grid View"
+                >
+                  <Grid size={18} />
+                </button>
+                <button 
+                  className={`icon-btn ${isListView ? 'active' : ''}`} 
+                  onClick={() => setIsListView(true)}
+                  aria-label="List View"
+                >
+                  <List size={18} />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -173,7 +191,7 @@ export default function Shop() {
             <div style={{ padding: '4rem 0', textAlign: 'center', color: 'red' }}>Error: {error}</div>
           ) : (
             <>
-              <div className="product-grid shop-product-grid">
+              <div className={`product-grid shop-product-grid ${isListView ? 'list-view' : ''}`}>
                 {currentProducts.map((product, i) => (
                   <ProductCard 
                     key={product.id || i}

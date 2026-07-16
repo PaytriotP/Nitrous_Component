@@ -58,7 +58,7 @@ export default function ProductDetail() {
         <div className="pd-gallery">
           <div className="pd-main-image">
             {product.image_file ? (
-              <img src={`/${product.image_file}`} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-card)' }} />
+              <img src={product.image_file.startsWith('http') ? product.image_file : `/${product.image_file}`} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-card)' }} />
             ) : (
               <div className="placeholder-chip" style={{ width: '80px', height: '80px', margin: 'auto' }}></div>
             )}

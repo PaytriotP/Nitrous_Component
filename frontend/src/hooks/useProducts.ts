@@ -20,7 +20,7 @@ export function useProducts() {
         const mappedProducts = (data.products || []).map((p: any) => {
           const variant = p.variants?.[0] || {};
           const priceObj = variant.calculated_price || (variant.prices && variant.prices[0]) || {};
-          const price_gbp = priceObj.amount ? (priceObj.amount / 100).toString() : '0.00';
+          const price_gbp = priceObj.amount ? (priceObj.amount).toString() : '0.00';
           
           return {
             part_number: variant.sku || p.handle,
@@ -35,7 +35,7 @@ export function useProducts() {
             stock_qty: p.metadata?.stock_qty || '0',
             price_gbp: price_gbp,
             stock_status: p.metadata?.stock_status || 'DEPLETED',
-            image_file: p.metadata?.image_file || '',
+            image_file: p.thumbnail || p.metadata?.image_file || '',
             datasheet_url: p.metadata?.datasheet_url || ''
           };
         });

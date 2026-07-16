@@ -215,7 +215,7 @@ export default function Checkout() {
                 {cartItems.map((item, i) => (
                   <div key={i} className="cs-item-row">
                     <div className="cs-item-image">
-                      {item.product.image_file ? <img src={`/${item.product.image_file}`} alt="" /> : <div className="placeholder-chip"></div>}
+                      {item.product.image_file ? <img src={item.product.image_file.startsWith('http') ? item.product.image_file : item.product.image_file} alt="" /> : <div className="placeholder-chip"></div>}
                       <span className="cs-item-qty">{item.quantity}</span>
                     </div>
                     <div className="cs-item-details">
