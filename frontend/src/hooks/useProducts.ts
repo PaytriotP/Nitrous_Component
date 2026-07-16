@@ -9,7 +9,7 @@ export function useProducts() {
     const baseUrl = import.meta.env.VITE_MEDUSA_BACKEND_URL || 'http://localhost:9000';
     fetch(`${baseUrl}/store/products?fields=*metadata,*variants.prices`, {
       headers: {
-        'x-publishable-api-key': 'pk_c0e5b8ca984e56a688bb912363164745887e7d2f15dd593d63f5f89bf6fda9e5'
+        'x-publishable-api-key': import.meta.env.VITE_MEDUSA_PUBLISHABLE_KEY || 'pk_68806a5ae2a0ee19d8364cd06d05ddac4e327a2efeef0b82c5c5a0ba059c043b'
       }
     })
       .then(res => {
