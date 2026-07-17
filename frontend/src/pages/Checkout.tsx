@@ -52,7 +52,7 @@ export default function Checkout() {
     
     try {
       const backendUrl = import.meta.env.VITE_MEDUSA_BACKEND_URL || 'http://localhost:9000';
-      const response = await fetch(`${backendUrl}/store/paytriot/sign`, {
+      const response = await fetch(`${backendUrl}/paytriot/sign`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -73,7 +73,14 @@ export default function Checkout() {
       const data = await response.json();
       
       if (window.PaytriotCheckout) {
-        window.PaytriotCheckout.open(data.fields);
+        window.PaytriotCheckout.open({
+          fields: data.fields,
+          gatewayUrl: data.gatewayUrl || 'https://gateway.paytriot.co.uk/Hosted/Modal/',
+          logoUrl: `${window.location.origin}/favicon.svg`,
+          onClose: () => {
+            console.log('User closed the Paytriot popup');
+          }
+        });
       } else {
         alert('Payment gateway failed to load.');
       }

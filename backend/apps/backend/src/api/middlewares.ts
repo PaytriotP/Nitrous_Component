@@ -1,7 +1,17 @@
 import { defineMiddlewares } from "@medusajs/medusa";
+import cors from "cors";
 
 export default defineMiddlewares({
   routes: [
+    {
+      matcher: "/paytriot/*",
+      middlewares: [
+        cors({
+          origin: "*",
+          credentials: true,
+        }),
+      ],
+    },
     {
       matcher: "/store/products",
       middlewares: [
