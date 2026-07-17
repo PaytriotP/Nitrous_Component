@@ -8,7 +8,6 @@ export default defineMiddlewares({
       middlewares: [
         cors({
           origin: "*",
-          credentials: true,
         }),
       ],
     },
