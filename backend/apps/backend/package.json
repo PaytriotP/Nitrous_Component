@@ -15,7 +15,7 @@
   "scripts": {
     "build": "medusa build",
     "postbuild": "node ./update-admin-favicon.js",
-    "start": "node flush-redis.js && medusa start",
+    "start": "medusa start",
     "dev": "medusa develop",
     "lint": "medusa lint",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
@@ -42,6 +42,7 @@
     "pg": "^8.22.0",
     "react-i18next": "13.5.0",
     "react-router-dom": "6.30.3",
+    "redis": "^6.1.0",
     "zod": "4.2.0"
   },
   "devDependencies": {
