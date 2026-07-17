@@ -29,7 +29,11 @@ export default function Home() {
 
   const getCategoryImageUrl = (title: string, fallback: string) => {
     if (loading || error || products.length === 0) return fallback;
-    const productWithImage = products.find(p => (p.category || '').toLowerCase() === title.toLowerCase() && p.image_file);
+    const productWithImage = products.find(p => 
+      (p.category || '').toLowerCase() === title.toLowerCase() && 
+      p.image_file &&
+      !p.image_file.endsWith('.svg')
+    );
     if (!productWithImage) return fallback;
     return productWithImage.image_file.startsWith('http') ? productWithImage.image_file : `/${productWithImage.image_file}`;
   };
