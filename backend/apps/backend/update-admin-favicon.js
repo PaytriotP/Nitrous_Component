@@ -23,3 +23,10 @@ if (fs.existsSync(faviconSourcePath)) {
 } else {
   console.log('Source favicon.svg not found.');
 }
+
+const targetAdminDir = path.join(__dirname, 'public/admin');
+const sourceAdminDir = path.join(__dirname, '.medusa/server/public/admin');
+if (fs.existsSync(sourceAdminDir)) {
+  fs.cpSync(sourceAdminDir, targetAdminDir, { recursive: true });
+  console.log('Copied admin build to public/admin');
+}
