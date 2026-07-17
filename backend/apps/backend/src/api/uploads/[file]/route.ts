@@ -6,8 +6,7 @@ export const GET = async (
   req: MedusaRequest,
   res: MedusaResponse
 ) => {
-  const pathParam = req.params.path || req.params[0];
-  const filePath = Array.isArray(pathParam) ? pathParam.join("/") : String(pathParam);
+  const filePath = String(req.params.file);
   
   
   // Resolve path relative to backend/apps/backend/uploads
