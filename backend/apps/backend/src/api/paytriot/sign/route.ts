@@ -1,7 +1,15 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
 import { PaytriotSignatureHelper } from "../../../utils/paytriot";
 
+export async function OPTIONS(req: MedusaRequest, res: MedusaResponse) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  return res.sendStatus(200);
+}
+
 export async function POST(req: MedusaRequest, res: MedusaResponse) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const inputData = req.body as any;
     
