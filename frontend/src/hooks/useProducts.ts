@@ -22,6 +22,18 @@ export function useProducts() {
           const priceObj = variant.calculated_price || (variant.prices && variant.prices[0]) || {};
           const price_gbp = priceObj.amount ? (priceObj.amount).toString() : '0.00';
           
+          let finalImage = p.thumbnail || p.metadata?.image_file || '';
+          
+          // Fix localhost URLs from local database uploads breaking on Vercel production
+          if (finalImage.includes('localhost') && p.metadata?.image_file) {
+            finalImage = p.metadata.image_file;
+          }
+          
+          // Ensure local bundled images are fetched from the correct public directory
+          if (finalImage && !finalImage.startsWith('http') && !finalImage.startsWith('images/') && !finalImage.startsWith('/images/')) {
+            finalImage = `images/${finalImage}`;
+          }
+
           return {
             part_number: variant.sku || p.handle,
             name: p.title,
@@ -35,7 +47,7 @@ export function useProducts() {
             stock_qty: p.metadata?.stock_qty || '0',
             price_gbp: price_gbp,
             stock_status: p.metadata?.stock_status || 'DEPLETED',
-            image_file: p.thumbnail || p.metadata?.image_file || '',
+            image_file: finalImage,
             datasheet_url: p.metadata?.datasheet_url || ''
           };
         });
