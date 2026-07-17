@@ -22,12 +22,8 @@ export function useProducts() {
           const priceObj = variant.calculated_price || (variant.prices && variant.prices[0]) || {};
           const price_gbp = priceObj.amount ? (priceObj.amount).toString() : '0.00';
           
-          let finalImage = p.thumbnail || p.metadata?.image_file || '';
-          
-          // Fix localhost URLs from local database uploads breaking on Vercel production
-          if (finalImage.includes('localhost') && p.metadata?.image_file) {
-            finalImage = p.metadata.image_file;
-          }
+          // Always prefer the bundled images defined in metadata because Railway's ephemeral file system loses uploaded thumbnails
+          let finalImage = p.metadata?.image_file || p.thumbnail || '';
           
           // Ensure local bundled images are fetched from the correct public directory
           if (finalImage && !finalImage.startsWith('http') && !finalImage.startsWith('images/') && !finalImage.startsWith('/images/')) {
