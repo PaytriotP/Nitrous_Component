@@ -25,9 +25,11 @@ export function useProducts() {
           // Always prefer the bundled images defined in metadata because Railway's ephemeral file system loses uploaded thumbnails
           let finalImage = p.metadata?.image_file || p.thumbnail || '';
           
-          // Ensure local bundled images are fetched from the correct public directory
-          if (finalImage && !finalImage.startsWith('http') && !finalImage.startsWith('images/') && !finalImage.startsWith('/images/')) {
-            finalImage = `images/${finalImage}`;
+          if (finalImage && !finalImage.startsWith('http')) {
+            // Clean up any old prefixes like 'images/'
+            let cleanImage = finalImage.replace(/^\/?(images\/)?/, '');
+            // Point directly to the new Medusa backend static route
+            finalImage = `${baseUrl}/uploads/${cleanImage}`;
           }
 
           return {
