@@ -189,9 +189,12 @@ export default function Checkout() {
                   3. Payment <Lock size={18} className="text-nitro-blue" aria-hidden="true" />
                 </h2>
                 
-                <p style={{ color: 'var(--steel-400)', marginBottom: '16px', fontSize: '14px' }}>
-                  Clicking "Pay" will open a secure payment window powered by Paytriot.
-                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+                  <p style={{ color: 'var(--steel-400)', margin: 0, fontSize: '14px' }}>
+                    Clicking "Pay" will open a secure payment window powered by
+                  </p>
+                  <img src="/images/paytriotlogo.svg" alt="Paytriot Logo" style={{ height: '24px' }} />
+                </div>
 
                 <div className="trust-badges-checkout">
                   <Link to="/privacy" className="tb-item" style={{ textDecoration: 'none' }}>
