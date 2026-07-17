@@ -15,7 +15,7 @@
   "scripts": {
     "build": "medusa build",
     "postbuild": "node ./update-admin-favicon.js",
-    "start": "medusa start",
+    "start": "node flush-redis.js && medusa start",
     "dev": "medusa develop",
     "lint": "medusa lint",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
