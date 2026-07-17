@@ -12,6 +12,14 @@ export default defineMiddlewares({
       ],
     },
     {
+      matcher: "/uploads/*",
+      middlewares: [
+        cors({
+          origin: "*",
+        }),
+      ],
+    },
+    {
       matcher: "/store/products",
       middlewares: [
         (req: any, res: any, next: any) => {
