@@ -26,10 +26,10 @@ export function useProducts() {
           let finalImage = p.metadata?.image_file || p.thumbnail || '';
           
           if (finalImage && !finalImage.startsWith('http')) {
-            // Clean up any old prefixes like 'images/'
-            let cleanImage = finalImage.replace(/^\/?(images\/)?/, '');
-            // Point directly to the new Medusa backend static route
-            finalImage = `${baseUrl}/uploads/${cleanImage}`;
+            // Ensure leading slash is stripped
+            finalImage = finalImage.replace(/^\/+/, '');
+            // Force it to load from the deployed production Vercel frontend so it works even on localhost
+            finalImage = `https://nitrous-component.vercel.app/${finalImage}`;
           }
 
           return {
