@@ -35,6 +35,9 @@ export default function Checkout() {
 
   const validateField = (_field: string, value: string) => {
     if (!value.trim()) return 'This field is required';
+    if (_field === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      return 'Please enter a valid email address';
+    }
     return '';
   };
 
@@ -255,6 +258,9 @@ export default function Checkout() {
               <div className="summary-row summary-total">
                 <span>Total</span>
                 <span className="text-mono text-white">£{total.toFixed(2)}</span>
+              </div>
+              <div className="summary-row" style={{ marginTop: '4px', paddingTop: 0, justifyContent: 'flex-end', borderTop: 'none' }}>
+                <span className="text-steel-400" style={{ fontSize: '12px' }}>Includes 20% VAT: £{(total - (total / 1.2)).toFixed(2)}</span>
               </div>
             </div>
           </aside>

@@ -43,9 +43,11 @@ export default function ProductDetail() {
     { key: 'Value/Rating', value: product.value_rating || 'N/A' },
     { key: 'Tolerance', value: product.tolerance || 'N/A' },
     { key: 'Quantity Per Pack', value: product.pack_qty || '1' },
-    { key: 'Manufacturer', value: product.manufacturer || 'N/A' },
-    { key: 'Datasheet', value: product.datasheet_url ? <a href={product.datasheet_url} className="datasheet-link" target="_blank" rel="noreferrer"><Download size={16} /> Datasheet.pdf</a> : 'Not Available' },
+    { key: 'Manufacturer', value: product.manufacturer || 'N/A' }
   ];
+  if (product.datasheet_url) {
+    specs.push({ key: 'Datasheet', value: <a href={product.datasheet_url} className="datasheet-link" target="_blank" rel="noreferrer"><Download size={16} /> Datasheet.pdf</a> });
+  }
 
   const tabs = ['Description', 'Specifications', 'Delivery', 'Reviews'];
 

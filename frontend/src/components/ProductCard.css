@@ -43,6 +43,15 @@
   margin: 0;
   flex-grow: 1;
 }
+.prod-name a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
 .prod-bottom {
   display: flex;
   align-items: center;
@@ -100,6 +109,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 .prod-card:hover .quick-add, .quick-add:focus-visible, .quick-add.has-qty {
   opacity: 1;

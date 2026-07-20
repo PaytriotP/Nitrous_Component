@@ -53,8 +53,11 @@ export default function Cart() {
             <hr className="summary-divider" />
 
             <div className="summary-row summary-total">
-              <span>Total <span className="text-steel-400" style={{ fontSize: '12px', fontWeight: 'normal' }}>(inc. VAT)</span></span>
+              <span>Total</span>
               <span className="text-mono">£{total.toFixed(2)}</span>
+            </div>
+            <div className="summary-row" style={{ marginTop: '4px', paddingTop: 0, justifyContent: 'flex-end', borderTop: 'none' }}>
+              <span className="text-steel-400" style={{ fontSize: '12px' }}>Includes 20% VAT: £{(total - (total / 1.2)).toFixed(2)}</span>
             </div>
 
             <Link to="/checkout" style={{ textDecoration: 'none', pointerEvents: cartItems.length === 0 ? 'none' : 'auto' }}>
