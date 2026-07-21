@@ -7,7 +7,7 @@ export function useProducts() {
 
   useEffect(() => {
     const baseUrl = import.meta.env.VITE_MEDUSA_BACKEND_URL || 'http://localhost:9000';
-    fetch(`${baseUrl}/store/products?fields=*metadata,*variants.prices`, {
+    fetch(`${baseUrl}/store/products?fields=id,title,handle,thumbnail,description,metadata,*variants,*variants.prices`, {
       headers: {
         'x-publishable-api-key': import.meta.env.VITE_MEDUSA_PUBLISHABLE_KEY || 'pk_68806a5ae2a0ee19d8364cd06d05ddac4e327a2efeef0b82c5c5a0ba059c043b'
       }
