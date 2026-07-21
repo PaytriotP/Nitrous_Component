@@ -58,7 +58,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="gauge-wrap">
-          <svg ref={gaugeRef} className="gauge" id="gauge" viewBox="0 0 300 210" role="img" aria-label="Stock pressure gauge at full">
+          <svg ref={gaugeRef} className="gauge" id="gauge" viewBox="0 -20 300 230" role="img" aria-label="Stock pressure gauge at full">
             <defs>
               <linearGradient id="gaugeGrad" x1="0" y1="1" x2="1" y2="0">
                 <stop offset="0" stopColor="#5B6812"/>
