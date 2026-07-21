@@ -49,9 +49,9 @@
   color: var(--steel-400);
 }
 .news-form input:focus {
-  outline: 2px solid var(--nitro-blue);
-  outline-offset: 0;
-  border-color: var(--nitro-blue);
+  outline: none;
+  box-shadow: 0 0 0 1.5px var(--nitro-blue), 0 0 24px rgba(47,183,255,0.25);
+  border-color: transparent;
 }
 @media (max-width: 768px) {
   .news-panel {

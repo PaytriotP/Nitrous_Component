@@ -184,6 +184,8 @@ p {
 .btn {
   display: inline-flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
   justify-content: center;
   gap: 8px;
   height: 48px;
@@ -249,6 +251,30 @@ button {
   transition: all 0.2s ease;
   height: 48px;
   padding: 0 var(--space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+button.btn-primary::after, a.btn.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  transition: none;
+}
+
+button.btn-primary:hover::after, a.btn.btn-primary:hover::after {
+  animation: shimmer 0.6s ease-out forwards;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 200%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -259,7 +285,27 @@ button {
 }
 
 @media (prefers-reduced-motion) {
-  button, .glow-hover {
+  button, .glow-hover, button.btn-primary::after, a.btn.btn-primary::after, .fade-up {
     transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
+
+/* Scroll Animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }

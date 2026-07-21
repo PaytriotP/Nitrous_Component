@@ -5,12 +5,22 @@
 .trust-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 32px; /* Increased breathing room */
 }
 .trust-item {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   align-items: flex-start;
+  position: relative;
+}
+.trust-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -16px;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: var(--carbon-700);
 }
 .trust-item svg {
   flex-shrink: 0;
@@ -34,8 +44,14 @@
     grid-template-columns: repeat(2, 1fr);
     row-gap: 32px;
   }
+  .trust-item:nth-child(2)::after {
+    display: none;
+  }
 }
 @media (max-width: 768px) {
+  .trust-item::after {
+    display: none;
+  }
   .trust {
     padding-bottom: 48px;
   }

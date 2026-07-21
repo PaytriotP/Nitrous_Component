@@ -3,17 +3,55 @@
   position: relative;
   padding: 112px 0 96px;
   overflow: hidden;
-  background:
-    repeating-linear-gradient(115deg, transparent 0 46px, rgba(47,183,255,.03) 46px 48px),
-    radial-gradient(ellipse 800px 500px at 75% 40%, rgba(14,111,184,.14), transparent 65%),
-    var(--carbon-900);
+  background: var(--carbon-900);
 }
+
+/* Carbon fiber & Speed lines background */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    /* Carbon grid pattern */
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 12px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0.01) 0, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 12px),
+    /* Hero radial glow */
+    radial-gradient(ellipse 800px 500px at 75% 40%, rgba(14,111,184,.14), transparent 65%);
+  z-index: 0;
+}
+
+/* Speed line streaks drifting slowly */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(45deg, transparent 0, transparent 200px, rgba(47,183,255,0.02) 200px, rgba(47,183,255,0.02) 205px);
+  z-index: 0;
+  animation: drift 60s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes drift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1.2fr .8fr;
   gap: 64px;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
+
+/* Staggered text animations */
 .eyebrow {
   font-family: var(--font-display);
   font-weight: 600;
@@ -21,7 +59,9 @@
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--nitro-blue);
-  margin-bottom: 16px;
+  margin-bottom: 8px; /* Tightened */
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.1s;
 }
 .hero h1 {
   font-size: 64px;
@@ -29,21 +69,30 @@
   line-height: 1.05;
   text-transform: uppercase;
   letter-spacing: .01em;
-  margin-bottom: 24px;
+  margin-bottom: 12px; /* Tightened */
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.2s;
 }
 .hero h1 .volt {
   color: var(--purge-volt);
+  display: inline-block;
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.4s;
 }
 .hero p {
-  color: var(--steel-400);
+  color: var(--steel-300); /* Slightly brighter for contrast */
   font-size: 18px;
   max-width: 480px;
   margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.5s;
 }
 .hero-ctas {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.6s;
 }
 .hero-meta {
   display: flex;
@@ -52,10 +101,17 @@
   font-family: var(--font-data);
   font-size: 13px;
   color: var(--steel-300);
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.7s;
 }
 .hero-meta strong {
   color: var(--white);
   font-weight: 500;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Gauge */
@@ -63,6 +119,8 @@
   display: flex;
   justify-content: center;
   position: relative;
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.3s;
 }
 .gauge-wrap::before {
   content: '';
@@ -79,26 +137,48 @@
 .gauge {
   width: 100%;
   max-width: 360px;
+  filter: drop-shadow(0 0 32px rgba(47,183,255,0.1));
 }
 .gauge-needle {
   transform-origin: 150px 150px;
   transform: rotate(-118deg);
 }
-@keyframes sweep {
-  0% { transform: rotate(-118deg) }
-  70% { transform: rotate(96deg) }
-  85% { transform: rotate(78deg) }
-  100% { transform: rotate(84deg) }
+
+.gauge-arc {
+  stroke-dasharray: 470;
+  stroke-dashoffset: 470;
 }
+
 .gauge-loaded .gauge-needle {
-  animation: sweep 1.6s cubic-bezier(.3,.9,.35,1) forwards .3s;
+  transform: rotate(84deg);
+  transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
+.gauge-loaded .gauge-arc {
+  stroke-dashoffset: 60; /* Approx 470 * (1 - 0.85) */
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .gauge-needle {
-    transform: rotate(84deg) !important;
+  .hero::after {
     animation: none !important;
+    display: none !important;
+  }
+  .eyebrow, .hero h1, .hero h1 .volt, .hero p, .hero-ctas, .hero-meta, .gauge-wrap {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  .gauge-loaded .gauge-needle {
+    transform: rotate(84deg) !important;
+    transition: none !important;
+  }
+  .gauge-loaded .gauge-arc {
+    stroke-dashoffset: 60 !important;
+    transition: none !important;
   }
 }
+
 @media (max-width: 1024px) {
   .hero h1 {
     font-size: 48px;

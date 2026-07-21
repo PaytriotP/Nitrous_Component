@@ -18,7 +18,7 @@
   border-color: var(--nitro-blue);
 }
 .cat-img {
-  background: var(--white);
+  background: radial-gradient(circle at 50% 50%, #1D2536, #131824);
   border-radius: 8px;
   height: 140px;
   display: flex;
@@ -26,6 +26,12 @@
   justify-content: center;
   margin-bottom: 16px;
   overflow: hidden;
+}
+.cat-img img, .cat-img svg {
+  transition: transform 0.3s ease;
+}
+.cat-tile:hover .cat-img img, .cat-tile:hover .cat-img svg {
+  transform: scale(1.08);
 }
 .cat-tile h3 {
   font-size: 16px;

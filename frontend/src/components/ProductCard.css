@@ -21,13 +21,21 @@
   border-color: var(--nitro-blue);
 }
 .prod-img {
-  background: var(--white);
+  background: radial-gradient(circle at 50% 50%, #1D2536, #131824);
   border-radius: 8px;
   height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 6px;
+  overflow: hidden;
+}
+.prod-img img, .prod-img svg {
+  transition: transform 0.3s ease;
+}
+.prod-card:hover .prod-img img, .prod-card:hover .prod-img svg,
+.prod-card:focus-within .prod-img img, .prod-card:focus-within .prod-img svg {
+  transform: scale(1.08);
 }
 .part-no {
   font-family: var(--font-data);

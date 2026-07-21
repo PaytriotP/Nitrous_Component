@@ -63,10 +63,11 @@ footer {
 .pay-icons span {
   font-family: var(--font-data);
   font-size: 11px;
-  color: var(--steel-400);
-  border: 1px solid var(--carbon-700);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   padding: 4px 8px;
+  letter-spacing: .04em;
 }
 @media (max-width: 1024px) {
   .foot-grid {
